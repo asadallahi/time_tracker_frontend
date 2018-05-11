@@ -46,7 +46,7 @@ class TimeTracker extends React.Component {
 
     render() {
         return (
-            <div className="">
+            <div className="sha-margin">
                 <div className="btn-group" role="group" aria-label="Basic example">
                     <button type="button"
                             onClick={() => this.startPause()}

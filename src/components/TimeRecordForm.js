@@ -6,6 +6,10 @@ import '../assets/css/react-datetime.css';
 
 class TimeRecordForm extends React.Component {
 
+    state ={
+        datetime_value:null,
+        show_alert:false,
+    };
     fromTracker() {
         console.log('from', this.duration.value);
         this.duration.value = timeFormat(this.props.data);
@@ -20,12 +24,23 @@ class TimeRecordForm extends React.Component {
     }
 
     async submit() {
+        //todo: form validation for duration and date
         //todo: masked input for duration
-        //todo: form validation for description and duration and date
-        let time = this.stringToTime(this.duration.value);
-
-
+        if(this.state.datetime_value === null){
+            alert('please select a time');
+            return false;
+        }
         let description = this.description.value;
+        if(description === ""){
+            alert('please fill the description');
+            return false;
+        }
+        let time = this.stringToTime(this.duration.value);
+        if(isNaN(time)){
+            alert('please fill the duration');
+            return false;
+        }
+
         console.log('desc', description);
         let data = {
             time,
@@ -34,6 +49,9 @@ class TimeRecordForm extends React.Component {
         };
 
         let response = await  ajax.postData(data);
+        if("id" in response){
+            this.setState({show_alert:true});
+        }
         console.log('response', response);
     }
 
@@ -41,6 +59,15 @@ class TimeRecordForm extends React.Component {
     render() {
         let self = this;
         return (
+            <div>
+                {this.state.show_alert? (
+                    <div className="alert alert-success alert-dismissible fade show" role="alert">
+                        Time track Saved
+                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                ):""}
             <div className="card">
                 <div className="card-body">
                     <h5 className="card-title">Book Time for a Task</h5>
@@ -107,6 +134,7 @@ class TimeRecordForm extends React.Component {
                         </form>
                     </div>
                 </div>
+            </div>
             </div>
         );
     }

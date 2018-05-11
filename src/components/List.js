@@ -34,8 +34,8 @@ class List extends React.Component {
         } else {
             let self = this;
             return (
-                <div className=" ">
-                    <form className="form-inline my-2 my-lg-0">
+                <div className="sha-margin">
+                    <form className="form-inline my-2 my-lg-0 sha-margin">
                         <input className="form-control mr-sm-2"
                                type="search"
                                placeholder="Search in Descriptions"
@@ -56,7 +56,7 @@ class List extends React.Component {
                         {
                             this.state.list.map((item, index) => {
                                 return (
-                                    <div className="card" key={index}>
+                                    <div className="card sha-margin" key={index}>
                                         <div className="card-body">
                                             <h5 className="card-title">{item.task_time}</h5>
                                             <div className="card-text">

@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Content from "./components/Content";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import List from "./components/List";
-
+import './assets/css/style.css';
 
 class App extends Component {
     render() {
@@ -31,5 +31,8 @@ export default App;
 const About = () => (
     <div>
         <h2>About</h2>
+        <p>
+            a simple time tracker based on React.js developed by <a href="https://github.com/asadallahi/time_tracker_frontend"> Seyed Hossein Asadollahi</a>
+        </p>
     </div>
 );
